@@ -2,27 +2,6 @@ import type { Match } from "./types"
 
 const API_BASE_URL = "https://api.football-data.org/v4"
 
-async function fetchFromAPI(endpoint: string) {
-  const apiKey = process.env.FOOTBALL_API_KEY
-
-  if (!apiKey) {
-    throw new Error("Football API key is not defined")
-  }
-
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    headers: {
-      "X-Auth-Token": apiKey,
-    },
-    next: { revalidate: 300 }, // Cache for 5 minutes
-  })
-
-  if (!response.ok) {
-    throw new Error(`API request failed with status ${response.status}`)
-  }
-
-  return response.json()
-}
-
 export async function getMatchesByLeague(leagueId: string): Promise<Match[]> {
   try {
     const apiKey = process.env.FOOTBALL_API_KEY
