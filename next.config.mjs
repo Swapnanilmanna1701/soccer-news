@@ -8,6 +8,20 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
+    domains: [
+      'logos-world.net',
+      'upload.wikimedia.org',
+      'logo.clearbit.com'
+    ],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
+  },
+  experimental: {
+    serverComponentsExternalPackages: [],
   },
 }
 
