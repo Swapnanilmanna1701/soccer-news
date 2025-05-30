@@ -18,7 +18,8 @@ const nextConfig = {
       'www.bundesliga.com',
       'www.ligue1.com',
       'img.uefa.com',
-      'spl.sa'
+      'spl.sa',
+      'logodownload.org'
     ],
     remotePatterns: [
       {
