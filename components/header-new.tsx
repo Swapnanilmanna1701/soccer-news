@@ -1,4 +1,5 @@
 import { Play } from "lucide-react"
+import { FloatingFootball } from "@/components/floating-football"
 
 export function Header() {
   return (
@@ -9,6 +10,7 @@ export function Header() {
             <Play className="w-5 h-5 text-black fill-current" />
           </div>
           <h1 className="text-xl font-bold">FootballTracker</h1>
+          <FloatingFootball size={35} />
         </div>
         <div className="text-sm text-green-200">Live Football Matches & Schedules</div>
       </div>

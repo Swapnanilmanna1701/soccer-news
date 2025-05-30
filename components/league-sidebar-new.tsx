@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { OfficialLogo } from "@/components/official-logo"
 import { getOfficialLeagueLogo, getAlternativeLeagueLogo, generateBackupLogo } from "@/lib/logo-service"
+import { InteractiveFootball } from "@/components/interactive-football"
 
 interface League {
   id: string
@@ -48,13 +49,21 @@ export function LeagueSidebar({ selectedLeague, onSelectLeague }: LeagueSidebarP
       id: "CL",
       name: "Champions League",
     },
+    {
+      id: "SPL",
+      name: "Saudi Pro League",
+      country: "Saudi Arabia",
+    },
   ]
 
   return (
     <aside className="w-80 bg-gray-900/50 backdrop-blur-sm border-r border-green-800/30 p-4">
       <Card className="bg-gray-800/50 border-green-700/30 backdrop-blur-sm">
         <div className="p-4">
-          <h2 className="text-lg font-semibold text-white mb-4">Select League</h2>
+          <div className="flex flex-col items-center mb-6">
+            <h2 className="text-lg font-semibold text-white mb-4">Select League</h2>
+            <InteractiveFootball size={70} />
+          </div>
           <div className="space-y-1">
             {leagues.map((league) => (
               <Button
@@ -82,6 +91,7 @@ export function LeagueSidebar({ selectedLeague, onSelectLeague }: LeagueSidebarP
                   </div>
                   <div className="text-left">
                     <div className="font-medium text-sm">{league.name}</div>
+                    {league.country && <div className="text-xs text-gray-400">{league.country}</div>}
                   </div>
                 </div>
               </Button>

@@ -4,6 +4,11 @@ export interface Team {
   shortName?: string
 }
 
+export interface Score {
+  home: number | null
+  away: number | null
+}
+
 export interface Match {
   id: number
   status: string
@@ -11,6 +16,7 @@ export interface Match {
   homeTeam: Team
   awayTeam: Team
   competition?: string
+  score?: Score | null
 }
 
 export interface League {
@@ -19,3 +25,13 @@ export interface League {
   shortName?: string
   country?: string
 }
+
+export type MatchStatus =
+  | "SCHEDULED"
+  | "TIMED"
+  | "IN_PLAY"
+  | "PAUSED"
+  | "FINISHED"
+  | "POSTPONED"
+  | "SUSPENDED"
+  | "CANCELLED"
