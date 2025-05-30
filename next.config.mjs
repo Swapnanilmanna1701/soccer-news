@@ -9,10 +9,16 @@ const nextConfig = {
   images: {
     unoptimized: true,
     domains: [
-      'api.sofascore.app',
-      'upload.wikimedia.org',
-      'assets.laliga.com',
-      'logodownload.org'
+      'crests.football-data.org',
+      'media.api-sports.io',
+      'a.espncdn.com',
+      'ui-avatars.com',
+      'www.premierleague.com',
+      'www.laliga.com',
+      'www.bundesliga.com',
+      'www.ligue1.com',
+      'img.uefa.com',
+      'spl.sa'
     ],
     remotePatterns: [
       {

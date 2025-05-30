@@ -24,7 +24,7 @@ export default function MatchesPage({ params }: MatchesPageProps) {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 dark:bg-slate-900">
+    <main className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-green-900">
       <LeagueHeader league={leagueInfo} />
       <div className="container mx-auto px-4 py-8">
         <DebugInfo leagueId={leagueId} />

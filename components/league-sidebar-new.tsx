@@ -3,8 +3,8 @@
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { ProfessionalLogo } from "@/components/professional-logo"
-import { getBestLeagueLogo, getBackupLeagueLogo } from "@/lib/logos"
+import { OfficialLogo } from "@/components/official-logo"
+import { getOfficialLeagueLogo, getAlternativeLeagueLogo, generateBackupLogo } from "@/lib/logo-service"
 
 interface League {
   id: string
@@ -48,11 +48,6 @@ export function LeagueSidebar({ selectedLeague, onSelectLeague }: LeagueSidebarP
       id: "CL",
       name: "Champions League",
     },
-    {
-      id: "SPL",
-      name: "Saudi Pro League",
-      country: "Saudi Arabia",
-    },
   ]
 
   return (
@@ -60,13 +55,13 @@ export function LeagueSidebar({ selectedLeague, onSelectLeague }: LeagueSidebarP
       <Card className="bg-gray-800/50 border-green-700/30 backdrop-blur-sm">
         <div className="p-4">
           <h2 className="text-lg font-semibold text-white mb-4">Select League</h2>
-          <div className="space-y-2">
+          <div className="space-y-1">
             {leagues.map((league) => (
               <Button
                 key={league.id}
                 variant="ghost"
                 className={cn(
-                  "w-full justify-start p-3 h-auto transition-all duration-300 hover:scale-105 hover:bg-green-800/30",
+                  "w-full justify-start p-3 h-auto transition-all duration-200 hover:bg-green-800/30",
                   selectedLeague === league.id
                     ? "bg-green-700/50 text-white border border-green-500/50"
                     : "text-gray-300 hover:text-white",
@@ -74,18 +69,19 @@ export function LeagueSidebar({ selectedLeague, onSelectLeague }: LeagueSidebarP
                 onClick={() => onSelectLeague(league.id)}
               >
                 <div className="flex items-center space-x-3 w-full">
-                  <div className="w-8 h-8 relative flex-shrink-0">
-                    <ProfessionalLogo
-                      primarySrc={getBestLeagueLogo(league.id)}
-                      backupSrc={getBackupLeagueLogo(league.id)}
-                      alt={league.name}
-                      width={32}
-                      height={32}
+                  <div className="w-6 h-6 relative flex-shrink-0">
+                    <OfficialLogo
+                      name={league.name}
+                      type="league"
+                      primarySrc={getOfficialLeagueLogo(league.id)}
+                      alternativeSrc={getAlternativeLeagueLogo(league.id)}
+                      backupSrc={generateBackupLogo(league.name, "league")}
+                      width={24}
+                      height={24}
                     />
                   </div>
                   <div className="text-left">
-                    <div className="font-medium">{league.name}</div>
-                    {league.country && <div className="text-xs text-gray-400">{league.country}</div>}
+                    <div className="font-medium text-sm">{league.name}</div>
                   </div>
                 </div>
               </Button>
