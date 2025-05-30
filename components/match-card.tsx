@@ -3,6 +3,8 @@ import { formatMatchTime, formatMatchDate } from "@/lib/utils"
 import type { Match } from "@/lib/types"
 import { Calendar, Clock } from "lucide-react"
 import Image from "next/image"
+// Import the logo utility
+import { getTeamLogo } from "@/lib/logos"
 
 interface MatchCardProps {
   match: Match
@@ -13,11 +15,11 @@ export function MatchCard({ match }: MatchCardProps) {
   const formattedTime = formatMatchTime(utcDate)
   const formattedDate = formatMatchDate(utcDate)
 
-  // Function to get team logo URL (you can replace with actual team logo API)
-  const getTeamLogo = (teamName: string) => {
-    // This is a placeholder - in a real app, you'd have a proper team logo service
-    return `https://logo.clearbit.com/${teamName.toLowerCase().replace(/\s+/g, "")}.com`
-  }
+  // Replace the getTeamLogo function with our utility
+  // Remove this function:
+  // const getTeamLogo = (teamName: string) => {
+  //   return `https://logo.clearbit.com/${teamName.toLowerCase().replace(/\s+/g, "")}.com`
+  // }
 
   return (
     <Card className="bg-gray-800/50 border-green-700/30 backdrop-blur-sm hover:bg-gray-700/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-500/20">
@@ -41,6 +43,7 @@ export function MatchCard({ match }: MatchCardProps) {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3 flex-1">
             <div className="w-8 h-8 relative">
+              {/* Update the Image components to use our utility and better error handling */}
               <Image
                 src={getTeamLogo(homeTeam.name) || "/placeholder.svg"}
                 alt={homeTeam.name}
@@ -48,7 +51,7 @@ export function MatchCard({ match }: MatchCardProps) {
                 height={32}
                 className="object-contain rounded"
                 onError={(e) => {
-                  e.currentTarget.src = "/placeholder.svg?height=32&width=32"
+                  e.currentTarget.src = "/images/teams/default-team.png"
                 }}
               />
             </div>
@@ -60,6 +63,7 @@ export function MatchCard({ match }: MatchCardProps) {
           <div className="flex items-center space-x-3 flex-1 justify-end">
             <span className="font-medium text-white text-sm truncate">{awayTeam.name}</span>
             <div className="w-8 h-8 relative">
+              {/* And for the away team */}
               <Image
                 src={getTeamLogo(awayTeam.name) || "/placeholder.svg"}
                 alt={awayTeam.name}
@@ -67,7 +71,7 @@ export function MatchCard({ match }: MatchCardProps) {
                 height={32}
                 className="object-contain rounded"
                 onError={(e) => {
-                  e.currentTarget.src = "/placeholder.svg?height=32&width=32"
+                  e.currentTarget.src = "/images/teams/default-team.png"
                 }}
               />
             </div>

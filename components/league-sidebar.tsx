@@ -4,6 +4,8 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
+// Import the logo utility
+import { getLeagueLogo } from "@/lib/logos"
 
 interface League {
   id: string
@@ -18,46 +20,47 @@ interface LeagueSidebarProps {
 }
 
 export function LeagueSidebar({ selectedLeague, onSelectLeague }: LeagueSidebarProps) {
+  // Update the leagues array to use our logo utility
   const leagues: League[] = [
     {
       id: "PL",
       name: "Premier League",
-      logo: "https://logos-world.net/wp-content/uploads/2020/06/Premier-League-Logo.png",
+      logo: getLeagueLogo("PL"),
       country: "England",
     },
     {
       id: "PD",
       name: "La Liga",
-      logo: "https://logos-world.net/wp-content/uploads/2020/06/La-Liga-Logo.png",
+      logo: getLeagueLogo("PD"),
       country: "Spain",
     },
     {
       id: "SA",
       name: "Serie A",
-      logo: "https://logos-world.net/wp-content/uploads/2020/06/Serie-A-Logo.png",
+      logo: getLeagueLogo("SA"),
       country: "Italy",
     },
     {
       id: "BL1",
       name: "Bundesliga",
-      logo: "https://logos-world.net/wp-content/uploads/2020/06/Bundesliga-Logo.png",
+      logo: getLeagueLogo("BL1"),
       country: "Germany",
     },
     {
       id: "FL1",
       name: "Ligue 1",
-      logo: "https://logos-world.net/wp-content/uploads/2020/06/Ligue-1-Logo.png",
+      logo: getLeagueLogo("FL1"),
       country: "France",
     },
     {
       id: "CL",
       name: "Champions League",
-      logo: "https://logos-world.net/wp-content/uploads/2020/06/UEFA-Champions-League-Logo.png",
+      logo: getLeagueLogo("CL"),
     },
     {
       id: "SPL",
       name: "Saudi Pro League",
-      logo: "https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/Saudi_Pro_League_logo.svg/1200px-Saudi_Pro_League_logo.svg.png",
+      logo: getLeagueLogo("SPL"),
       country: "Saudi Arabia",
     },
   ]
@@ -82,6 +85,7 @@ export function LeagueSidebar({ selectedLeague, onSelectLeague }: LeagueSidebarP
               >
                 <div className="flex items-center space-x-3 w-full">
                   <div className="w-8 h-8 relative flex-shrink-0">
+                    {/* Update the Image component to handle errors better */}
                     <Image
                       src={league.logo || "/placeholder.svg"}
                       alt={league.name}
@@ -89,7 +93,7 @@ export function LeagueSidebar({ selectedLeague, onSelectLeague }: LeagueSidebarP
                       height={32}
                       className="object-contain"
                       onError={(e) => {
-                        e.currentTarget.src = "/placeholder.svg?height=32&width=32"
+                        e.currentTarget.src = "/images/leagues/generic-league.png"
                       }}
                     />
                   </div>

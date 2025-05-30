@@ -7,6 +7,9 @@ import { Button } from "@/components/ui/button"
 import { Trophy, Loader2 } from "lucide-react"
 import Image from "next/image"
 
+// Import the logo utility
+import { getLeagueLogo } from "@/lib/logos"
+
 type League = {
   id: string
   name: string
@@ -18,35 +21,36 @@ export function LeagueSelector() {
   const router = useRouter()
   const [loading, setLoading] = useState<string | null>(null)
 
+  // Update the leagues array to use our logo utility
   const leagues: League[] = [
     {
       id: "PL",
       name: "Premier League",
-      logo: "/placeholder.svg?height=80&width=80",
+      logo: getLeagueLogo("PL"),
       country: "England",
     },
     {
       id: "PD",
       name: "La Liga",
-      logo: "/placeholder.svg?height=80&width=80",
+      logo: getLeagueLogo("PD"),
       country: "Spain",
     },
     {
       id: "SA",
       name: "Serie A",
-      logo: "/placeholder.svg?height=80&width=80",
+      logo: getLeagueLogo("SA"),
       country: "Italy",
     },
     {
       id: "FL1",
       name: "Ligue 1",
-      logo: "/placeholder.svg?height=80&width=80",
+      logo: getLeagueLogo("FL1"),
       country: "France",
     },
     {
       id: "CL",
       name: "Champions League",
-      logo: "/placeholder.svg?height=80&width=80",
+      logo: getLeagueLogo("CL"),
     },
   ]
 
@@ -61,12 +65,16 @@ export function LeagueSelector() {
         <Card key={league.id} className="overflow-hidden hover:shadow-lg transition-shadow">
           <CardContent className="p-6 flex flex-col items-center">
             <div className="mb-4 w-20 h-20 relative">
+              {/* Update the Image component to handle errors better */}
               <Image
                 src={league.logo || "/placeholder.svg"}
                 alt={league.name}
                 width={80}
                 height={80}
                 className="object-contain"
+                onError={(e) => {
+                  e.currentTarget.src = "/images/leagues/generic-league.png"
+                }}
               />
             </div>
             <h2 className="text-xl font-bold mb-1">{league.name}</h2>

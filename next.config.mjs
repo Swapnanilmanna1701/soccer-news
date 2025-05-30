@@ -9,9 +9,10 @@ const nextConfig = {
   images: {
     unoptimized: true,
     domains: [
-      'logos-world.net',
+      'api.sofascore.app',
       'upload.wikimedia.org',
-      'logo.clearbit.com'
+      'assets.laliga.com',
+      'logodownload.org'
     ],
     remotePatterns: [
       {
